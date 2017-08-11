@@ -1,0 +1,240 @@
+<!--HTML code to render bar and pie charts using FusionCharts library-->
+<html>
+    <head>
+        <title> Rendering Charts</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Bootstrap CDN-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/
+		bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/
+		jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/
+		bootstrap.min.js"></script>
+       <!--FusionCharts can be accessed using fusioncharts.js and fusioncharts.theme.fin.js files-->
+	   <script type="text/javascript" src="fusioncharts/fusioncharts.js">
+		</script>
+        <script type="text/javascript" src="fusioncharts/
+		fusioncharts.theme.fint.js"></script>
+        <script type="text/javascript">
+		/**The initialization code is wrapped within ready to safeguard the chart 
+		*instantiation code from being called before the FusionCharts Suite XT library is loaded and is ready to be used on the page.*/
+		FusionCharts.ready(function(){
+		/*An instance of pie chart is created here*/
+                var pieChart = new FusionCharts({
+                    "type": "pie2d",
+                    "renderAt": "chartContainer",
+                    "width": "500",
+                    "height": "450",
+                    "dataFormat": "json",
+                    "dataSource":  {
+                        "chart": {
+                            "numberSuffix": "%",
+                            //"caption":"How effective is the speaker?",
+                            "showPercentInTooltip": "0",
+                            "decimals": "1",
+                            "useDataPlotColorForLabels": "1",
+							"startingAngle":"275",
+                            //Theme
+                            "theme": "fint"
+                        },
+                        "data": [
+                            {
+                                "value": "45%",
+                                "color": "#2fa9e0",
+                                "title": "1(12)"
+                            },
+                            {
+                                "value": "12%",
+                                "color": "#f24b99",
+                                "title": "2(28)"
+                            },
+                            {
+                                "value": "32%",
+                                "color": "#37d8b3",
+                                "title": "3(9)"
+                            },
+                            {
+                                "value": "15%",
+                                "color": "#bfbfbf",
+                                "title": "4(5)"
+                            }
+                        ]
+                    }
+                });
+				/*Pie Chart will be rendered at the specified position*/
+                pieChart.render();
+            })
+            FusionCharts.ready(function(){
+			/*An instance of barchart is created here*/
+                var barchart=new FusionCharts({
+                    "type":"mscolumn2d",
+                    "renderAt":"chartContainer2",
+                    "height":"450",
+                    "width":"400",
+                    "dataFormat":"json",
+                    "dataSource": {
+                        "chart": {
+                            "numberPrefix": "",
+                            //"caption":"Clinical Practice",
+                            "showPercentInTooltip": "1",
+                            "decimals": "1",
+                            "useDataPlotColorForLabels": "1",
+							"shoqAxisLine":"0",
+                            /*Themes lets us centralize the cosmetic and functional properties of the chart*/
+                            "theme": "fint"
+                        },
+                        "categories": [
+                            {
+                                "category": [
+                                    {
+                                        "label": "1"
+                                    },
+                                    {
+                                        "label": "2"
+                                    },
+                                    {
+                                        "label":"3"
+                                    },
+                                    {
+                                        "label":"4"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dataset": [
+                            {
+                                "data": [
+                                    {
+                                        "value": "500",
+										"color": "#37d8b3"
+                                    },
+                                    {
+                                        "value": "140",
+										"color":"#f24b99"
+                                    },
+                                    {
+                                        "value": "14",
+                                        "color": "#000000"
+                                    },
+                                    {
+                                        "value": "12",
+										"color":"#bfbfbf"
+                                    }
+                                ]
+                            },
+                            {
+                                "data": [
+                                    {
+                                        "value": "35",
+										"color":"#f24b99"
+                                    },
+                                    {
+                                        "value": "15",
+										"color":"#f24b99"
+                                    },
+                                    {
+                                        "value": "15",
+										"color":"#f24b99"
+                                    },
+                                    {
+                                        "value" :"19",
+										"color":"#f24b99"
+                                    }
+                                ]
+                            }
+                        ],
+                    }
+                });
+				/*Bar chart will be rendered at the specified position*/
+                barchart.render();
+            })
+			function jsonParse()
+			{
+			/*JSON data is parsed into javascript object*/
+			var t=JSON.parse('{"tileNumber":128,"tileText":"Total Registrations","tileBgColor":"#2fa9e0"}');
+			   document.getElementById("tile1").innerHTML=t.tileNumber;
+			   document.getElementById("tile1a").innerHTML=t.tileText;
+			var u=JSON.parse('{"tileNumber":360, "tileText":"Total Referals","tileBgColor":"#f34b99"}');
+			    document.getElementById("tile2").innerHTML=u.tileNumber;
+			    document.getElementById("tile2a").innerHTML=u.tileText;
+			var v=JSON.parse('{"tileNumber":96,"tileText":"Number of Sessions","tileBgColor":"#99dc3b"}');
+			    document.getElementById("tile3").innerHTML=v.tileNumber;
+			    document.getElementById("tile3a").innerHTML=v.tileText;
+			var w=JSON.parse('{"tileNumber" : 4.5 ,"tileText": "Overall Satisfaction","tileBgColor": "#f3c848"}');
+			    document.getElementById("tile4").innerHTML=w.tileNumber;
+			    document.getElementById("tile4a").innerHTML=w.tileText;
+			}				
+         </script>	
+        <style>
+            #chartContainer{
+                width:500px;
+                height:450px;
+                float:left;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            #chartContainer2{
+                width:500px;
+                height:450px;
+                float:left;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .tiles{
+                color:white;
+				padding:1px 1px 0 2px;
+				font-family:"verdana";
+				
+            }
+			.jumbotron{
+			     width:1050px;
+				 background:#f4511e;
+				 color:white;			
+			}
+        </style>
+    </head>
+	<!--The function jsonParse() will be executed once the page has been loaded completely-->
+    <body onload="jsonParse()">
+        <div class="container">
+		<div class="jumbotron text-center">
+                <h1>Rendering Charts
+				<small style="color:white;">Using FusionCharts</small></h1>
+            </div>
+			<div class="row">
+			<!--Every tile is created using a div tag and data is rendered using javascript object-->
+            <div  style="width:230px; height:70px; float:left; margin:20px; background-color:#2fa9e0; box-radius:3px; -webkit-border-radius:3px;">
+                <p class="tiles" id="tile1"></p>
+				<span class="caret" style="color:white;float:right;"></span>
+                <p class="tiles" id="tile1a"></p>
+            </div>
+            <div style="width:230px; height:70px;float:left; margin:20px;background-color:#f34b99;box-radius:3px;-webkit-border-radius:3px;">
+                <p class="tiles" id="tile2"></p>
+                <span class="caret" style="color:white;float:right;"></span>
+                <p class="tiles" id="tile2a"></p>
+            </div>
+            <div style="width:230px; height:70px;float:left; margin:20px;background-color:#99dc3b;box-radius:3px;-webkit-border-radius:3px;">
+                <p class="tiles" id="tile3"></p>
+                <span class="caret" style="color:white;float:right;"></span>
+                <p class="tiles" id="tile3a"></p>
+            </div>
+            <div style="width:230px; height:70px; float:left; margin:20px;background-color:#f3c848;box-radius:3px;-webkit-border-radius:3px;">
+                <p class="tiles" id="tile4"></p>
+                <span class="caret" style="color:white;float:right;"></span>
+                <p class="tiles" id="tile4a"></p>
+            </div> 
+            <div style="width:500px; height:500px; float:left; margin:20px;">
+                <div style="background:#2F4F4F; width:100%;">
+                    <p style="color:white; font-family:verdana;display:inline-block;padding:3px 0px 0px 8px;">Clinical Practice
+                    <span class="caret" style="color:white;position:relative;left:365px;"></span></p>
+                </div>
+                <div id="chartContainer2">Bar Chart will be loaded here!</div>
+            </div>
+            <div style="width:500px; height:500px;float:left; margin:20px;">
+                <div style="background: #2F4F4F; width:100%;">
+                    <p style="color:white; font-family:verdana;display:inline-block;padding:3px 0px 0px 8px;">How effective is the speaker?
+                    <span class="caret" style="color:white; position:relative;left:265px;"></span></p>
+                </div>
+                <div id="chartContainer" >Pie Chart will be loaded here!</div>
+            </div>
+			</div>
+        </div>
+    </body>	
+</html>
